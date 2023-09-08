@@ -11,17 +11,6 @@ type HomeDocumentDataSlicesSlice = never;
  */
 interface HomeDocumentData {
   /**
-   * Home2 field in *Home*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: home.home2
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  home2: prismic.RichTextField;
-
-  /**
    * Slice Zone field in *Home*
    *
    * - **Field Type**: Slice Zone
@@ -75,7 +64,7 @@ interface HomeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type HomeDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 export type AllDocumentTypes = HomeDocument;
 
