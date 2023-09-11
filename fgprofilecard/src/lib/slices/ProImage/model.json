@@ -1,0 +1,27 @@
+{
+  "id": "pro_image",
+  "type": "SharedSlice",
+  "name": "ProImage",
+  "description": "ProImage",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "proimage": {
+          "type": "Image",
+          "config": {
+            "label": "proimage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

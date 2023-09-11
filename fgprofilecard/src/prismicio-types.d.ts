@@ -4,12 +4,23 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomeDocumentDataSlicesSlice = never;
+type HomeDocumentDataSlicesSlice = ProImageSlice;
 
 /**
  * Content for Home documents
  */
 interface HomeDocumentData {
+  /**
+   * pro field in *Home*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.pro
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  pro: prismic.ImageField<never>;
+
   /**
    * Slice Zone field in *Home*
    *
@@ -68,6 +79,51 @@ export type HomeDocument<Lang extends string = string> =
 
 export type AllDocumentTypes = HomeDocument;
 
+/**
+ * Primary content in *ProImage → Primary*
+ */
+export interface ProImageSliceDefaultPrimary {
+  /**
+   * proimage field in *ProImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pro_image.primary.proimage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  proimage: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ProImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProImage*
+ */
+type ProImageSliceVariation = ProImageSliceDefault;
+
+/**
+ * ProImage Shared Slice
+ *
+ * - **API ID**: `pro_image`
+ * - **Description**: ProImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProImageSlice = prismic.SharedSlice<
+  "pro_image",
+  ProImageSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -82,6 +138,10 @@ declare module "@prismicio/client" {
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ProImageSlice,
+      ProImageSliceDefaultPrimary,
+      ProImageSliceVariation,
+      ProImageSliceDefault,
     };
   }
 }

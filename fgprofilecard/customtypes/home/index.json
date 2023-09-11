@@ -13,11 +13,23 @@
           "placeholder": ""
         }
       },
+      "pro": {
+        "type": "Image",
+        "config": {
+          "label": "pro",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "pro_image": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
