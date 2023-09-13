@@ -9,16 +9,8 @@
       "uid": {
         "type": "UID",
         "config": {
-          "label": "home",
+          "label": "uid",
           "placeholder": ""
-        }
-      },
-      "pro": {
-        "type": "Image",
-        "config": {
-          "label": "pro",
-          "constraint": {},
-          "thumbnails": []
         }
       },
       "slices": {
@@ -26,7 +18,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "pro_image": {
+            "home": {
               "type": "SharedSlice"
             }
           }

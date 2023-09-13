@@ -1,29 +1,14 @@
 <script>
 
     import { SliceZone } from '@prismicio/svelte';
-    import * as prismic from '@prismicio/client'
     import { components } from '$lib/slices';
 
- 
-
     export let data;
-
- 
 
     // console.log(data);
 
 </script>
 
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<article>
-    {@html prismic.asHTML(data.intro)}
-</article>
 
 <SliceZone slices={data.slices} {components} />
-
-<style>
-
-</style>

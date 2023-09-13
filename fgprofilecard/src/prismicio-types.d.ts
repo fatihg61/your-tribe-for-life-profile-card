@@ -4,23 +4,12 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomeDocumentDataSlicesSlice = ProImageSlice;
+type HomeDocumentDataSlicesSlice = HomeSlice;
 
 /**
  * Content for Home documents
  */
 interface HomeDocumentData {
-  /**
-   * pro field in *Home*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: home.pro
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  pro: prismic.ImageField<never>;
-
   /**
    * Slice Zone field in *Home*
    *
@@ -80,49 +69,86 @@ export type HomeDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomeDocument;
 
 /**
- * Primary content in *ProImage → Primary*
+ * Primary content in *Home → Primary*
  */
-export interface ProImageSliceDefaultPrimary {
+export interface HomeSliceDefaultPrimary {
   /**
-   * proimage field in *ProImage → Primary*
+   * title field in *Home → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * subtitle field in *Home → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * profileimg field in *Home → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: pro_image.primary.proimage
+   * - **API ID Path**: home.primary.profileimg
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  proimage: prismic.ImageField<never>;
+  profileimg: prismic.ImageField<never>;
+
+  /**
+   * paragraaf field in *Home → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.primary.paragraaf
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  paragraaf: prismic.RichTextField;
+
+  /**
+   * githublink field in *Home → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.primary.githublink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  githublink: prismic.LinkField;
 }
 
 /**
- * Default variation for ProImage Slice
+ * Default variation for Home Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProImageSliceDefault = prismic.SharedSliceVariation<
+export type HomeSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<ProImageSliceDefaultPrimary>,
+  Simplify<HomeSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *ProImage*
+ * Slice variation for *Home*
  */
-type ProImageSliceVariation = ProImageSliceDefault;
+type HomeSliceVariation = HomeSliceDefault;
 
 /**
- * ProImage Shared Slice
+ * Home Shared Slice
  *
- * - **API ID**: `pro_image`
- * - **Description**: ProImage
+ * - **API ID**: `home`
+ * - **Description**: Home
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProImageSlice = prismic.SharedSlice<
-  "pro_image",
-  ProImageSliceVariation
->;
+export type HomeSlice = prismic.SharedSlice<"home", HomeSliceVariation>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -138,10 +164,10 @@ declare module "@prismicio/client" {
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
       AllDocumentTypes,
-      ProImageSlice,
-      ProImageSliceDefaultPrimary,
-      ProImageSliceVariation,
-      ProImageSliceDefault,
+      HomeSlice,
+      HomeSliceDefaultPrimary,
+      HomeSliceVariation,
+      HomeSliceDefault,
     };
   }
 }
